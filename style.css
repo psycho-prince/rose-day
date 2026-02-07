@@ -1,8 +1,7 @@
 :root {
-  --bg1: #12010a;
-  --bg2: #3a0f23;
-  --rose: #d90429;
-  --pink: #ff8fab;
+  --bg1: #0f050a;
+  --bg2: #2a0a18;
+  --accent: #ff8fab;
 }
 
 * {
@@ -27,35 +26,35 @@ body {
 }
 
 /* ROSE */
-.rose {
+.rose-container {
   text-align: center;
   cursor: pointer;
-  animation: float 4s ease-in-out infinite;
+  animation: breathe 4s ease-in-out infinite;
 }
 
-.rose svg {
-  width: 180px;
-  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.6));
-  transform: scale(0.9);
-  transition: transform 1.2s ease;
+.rose-container img {
+  width: 240px;
+  max-width: 75vw;
+  border-radius: 12px;
+  filter: drop-shadow(0 30px 50px rgba(0,0,0,0.75));
+  transition: transform 1.6s ease, opacity 1.2s ease;
 }
 
-.rose span {
+.rose-container span {
   display: block;
-  margin-top: 12px;
+  margin-top: 14px;
   font-size: 14px;
-  opacity: 0.7;
+  opacity: 0.65;
 }
 
-.rose.open svg {
-  transform: scale(1.1);
+.rose-container.open img {
+  transform: scale(1.15);
 }
 
-/* LETTER */
-.letter {
+/* MESSAGE */
+.message {
   position: absolute;
   text-align: center;
-  padding: 24px;
 }
 
 .hidden {
@@ -71,30 +70,34 @@ h1 {
 
 button {
   margin-top: 24px;
-  background: none;
-  border: 1px solid var(--pink);
-  color: var(--pink);
-  padding: 10px 24px;
+  padding: 10px 26px;
   border-radius: 999px;
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
   cursor: pointer;
 }
 
-/* HEART ATMOSPHERE */
-.heart {
+/* PETALS */
+.petal {
   position: absolute;
-  width: 14px;
-  opacity: 0.6;
-  animation: fall 6s linear forwards;
+  width: 16px;
+  height: 16px;
+  background: radial-gradient(circle, #ff8fab, #c9184a);
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(45deg);
+  opacity: 0.7;
+  animation: fall 9s linear forwards;
 }
 
 @keyframes fall {
   to {
-    transform: translateY(110vh) rotate(360deg);
+    transform: translateY(110vh) rotate(720deg);
     opacity: 0;
   }
 }
 
-@keyframes float {
+@keyframes breathe {
   0%,100% { transform: translateY(0); }
   50% { transform: translateY(-12px); }
 }
