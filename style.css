@@ -7,7 +7,7 @@
 
 body {
   height: 100vh;
-  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  background: linear-gradient(135deg, #ff5f8a, #ff8fa3);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -16,6 +16,7 @@ body {
 
 .container {
   text-align: center;
+  z-index: 2;
 }
 
 .letter {
@@ -39,19 +40,34 @@ h1 {
   color: white;
 }
 
+/* SVG ROSES */
 .rose {
   position: absolute;
-  font-size: 30px;
+  width: 40px;
+  animation: float 5s linear forwards;
+}
+
+/* HEART CONFETTI */
+.heart {
+  position: absolute;
+  width: 20px;
   animation: fall 4s linear forwards;
+  opacity: 0.9;
 }
 
 @keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes float {
   from {
-    transform: translateY(-50px);
-    opacity: 1;
+    transform: translateY(100vh);
   }
   to {
-    transform: translateY(110vh);
+    transform: translateY(-100px);
     opacity: 0;
   }
 }
