@@ -1,15 +1,15 @@
 :root {
-  --pink: #ff8fab;
-  --rose: #d90429;
-  --bg1: #1b0c14;
+  --bg1: #12010a;
   --bg2: #3a0f23;
+  --rose: #d90429;
+  --pink: #ff8fab;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Segoe UI", system-ui, sans-serif;
+  font-family: system-ui, -apple-system;
 }
 
 body {
@@ -19,39 +19,43 @@ body {
   color: white;
 }
 
-.scene {
+.stage {
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  place-items: center;
   position: relative;
+}
+
+/* ROSE */
+.rose {
+  text-align: center;
+  cursor: pointer;
+  animation: float 4s ease-in-out infinite;
+}
+
+.rose svg {
+  width: 180px;
+  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.6));
+  transform: scale(0.9);
+  transition: transform 1.2s ease;
+}
+
+.rose span {
+  display: block;
+  margin-top: 12px;
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+.rose.open svg {
+  transform: scale(1.1);
 }
 
 /* LETTER */
 .letter {
-  text-align: center;
-  cursor: pointer;
-  animation: float 3s ease-in-out infinite;
-  z-index: 5;
-}
-
-.envelope {
-  width: 100px;
-  height: 70px;
-  background: linear-gradient(135deg, #ffb3c6, #ff758f);
-  border-radius: 8px;
-}
-
-.letter p {
-  margin-top: 12px;
-  font-size: 14px;
-  opacity: 0.8;
-}
-
-/* REVEAL */
-.reveal {
   position: absolute;
   text-align: center;
+  padding: 24px;
 }
 
 .hidden {
@@ -61,34 +65,26 @@ body {
 
 h1 {
   font-size: clamp(36px, 7vw, 56px);
-  letter-spacing: 1px;
   font-weight: 500;
+  letter-spacing: 1px;
 }
 
-/* ROSES */
-.rose {
-  position: absolute;
-  width: 42px;
-  animation: rise 6s ease-out forwards;
+button {
+  margin-top: 24px;
+  background: none;
+  border: 1px solid var(--pink);
+  color: var(--pink);
+  padding: 10px 24px;
+  border-radius: 999px;
+  cursor: pointer;
 }
 
-/* HEART CONFETTI */
+/* HEART ATMOSPHERE */
 .heart {
   position: absolute;
-  width: 18px;
-  animation: fall 5s linear forwards;
-  opacity: 0.85;
-}
-
-@keyframes rise {
-  from {
-    transform: translateY(120vh) scale(0.6);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(-120px) scale(1);
-    opacity: 1;
-  }
+  width: 14px;
+  opacity: 0.6;
+  animation: fall 6s linear forwards;
 }
 
 @keyframes fall {
