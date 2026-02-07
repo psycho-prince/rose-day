@@ -2,6 +2,7 @@ const roseContainer = document.getElementById("roseContainer");
 const rose = document.getElementById("rose");
 const messageBox = document.getElementById("messageBox");
 const message = document.getElementById("message");
+const replayBtn = document.getElementById("replayBtn");
 
 const valentineMessages = [
   "Happy Rose Day!"
@@ -9,14 +10,15 @@ const valentineMessages = [
 
 roseContainer.addEventListener("click", () => {
   roseContainer.classList.add("open");
-  roseContainer.style.pointerEvents = "none";
 
   setTimeout(() => {
-    rose.style.opacity = "0";
+    roseContainer.classList.add("hidden"); // REMOVE ROSE
     showMessage();
     startPetals();
-  }, 1600);
+  }, 1200);
 });
+
+replayBtn.addEventListener("click", () => location.reload());
 
 let messageIndex = 0;
 
