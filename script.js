@@ -4,9 +4,7 @@ const messageBox = document.getElementById("messageBox");
 const message = document.getElementById("message");
 
 const valentineMessages = [
-  "My dearest Valentine,",
-  "You make every moment beautiful,",
-  "Just like this rose. Happy Valentine's Day!"
+  "Happy Rose Day!"
 ];
 
 roseContainer.addEventListener("click", () => {
