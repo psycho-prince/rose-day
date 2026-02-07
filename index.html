@@ -3,47 +3,246 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Happy Rose Day</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>For You | Valentine's 2026</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark: #0f040a;
+      --bg-deep: #2d0b1e;
+      --accent: #ff8fab;
+      --glass: rgba(255, 255, 255, 0.1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      height: 100vh;
+      background: radial-gradient(circle at center, var(--bg-deep), var(--bg-dark));
+      color: white;
+      font-family: "Poppins", sans-serif;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Ambient Background Particles */
+    #canvas-ambient {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .stage {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      width: 100%;
+    }
+
+    /* ROSE UPGRADE */
+    .rose-container {
+      cursor: pointer;
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      display: inline-block;
+    }
+
+    .rose-container:hover {
+      transform: scale(1.05);
+      filter: brightness(1.2);
+    }
+
+    .rose-container img {
+      width: 240px;
+      border-radius: 50%; /* Keeps the glow centered */
+      box-shadow: 0 0 50px rgba(255, 143, 171, 0.2);
+      transition: transform 1s ease;
+    }
+
+    .instruction {
+      margin-top: 20px;
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      letter-spacing: 2px;
+      opacity: 0.6;
+      animation: pulse 2s infinite;
+    }
+
+    /* MESSAGE BOX UPGRADE */
+    .message-card {
+      background: var(--glass);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 3rem;
+      border-radius: 24px;
+      max-width: 85vw;
+      transform: translateY(50px);
+      opacity: 0;
+      transition: all 1s ease-out;
+      display: none;
+    }
+
+    .message-card.show {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h1 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2rem, 8vw, 3.5rem);
+      margin-bottom: 1rem;
+      background: linear-gradient(to right, #fff, var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    p { margin-bottom: 2rem; font-weight: 300; line-height: 1.6; }
+
+    button {
+      padding: 12px 40px;
+      background: transparent;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      border-radius: 50px;
+      cursor: pointer;
+      transition: 0.3s;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 0.8rem;
+    }
+
+    button:hover {
+      background: var(--accent);
+      color: var(--bg-dark);
+      box-shadow: 0 0 20px var(--accent);
+    }
+
+    /* ANIMATIONS */
+    @keyframes pulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.8; }
+    }
+
+    .heart {
+      position: absolute;
+      pointer-events: none;
+      z-index: 5;
+      filter: drop-shadow(0 0 5px rgba(255, 143, 171, 0.5));
+    }
+
+    .hidden { display: none !important; }
+  </style>
 </head>
 <body>
 
+  <canvas id="canvas-ambient"></canvas>
+
   <main class="stage">
-
-    <!-- HERO ROSE : REAL ROSE PHOTO -->
     <div id="roseContainer" class="rose-container">
-
-      <img
-        id="rose"
-        alt="Red Rose Flower"
-        loading="eager"
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Rosa_rubiginosa_1.jpg/512px-Rosa_rubiginosa_1.jpg"
-        onerror="this.style.display='none';document.getElementById('fallback').style.display='block';"
-      />
-
-      <!-- Fallback (only if image fails) -->
-      <div id="fallback" style="display:none;font-size:64px;">🌹</div>
-
-      <span>Tap the rose</span>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Red_rose.jpg/512px-Red_rose.jpg" alt="Rose">
+      <p class="instruction">Open your heart</p>
     </div>
 
-    <!-- MESSAGE -->
-    <div id="messageBox" class="message hidden">
-      <h1 id="message" class="title"></h1>
-      <div class="button-wrap">
-        <button id="replayBtn" type="button">Replay</button>
-      </div>
+    <div id="messageBox" class="message-card">
+      <h1>Happy Valentine’s Day</h1>
+      <p>Every petal represents a reason why you're special.</p>
+      <button onclick="location.reload()">Start Over</button>
     </div>
-
-    <div id="finalSurprise" class="final-surprise hidden">
-      <p>You are my special rose!</p>
-    </div>
-
   </main>
 
-  <!-- Petals -->
-  <div id="petals"></div>
+  <script>
+    const rose = document.getElementById("roseContainer");
+    const message = document.getElementById("messageBox");
 
-  <script src="script.js"></script>
+    // Click logic
+    rose.addEventListener("click", () => {
+      rose.style.transform = "scale(0) rotate(20deg)";
+      rose.style.opacity = "0";
+      
+      setTimeout(() => {
+        rose.classList.add("hidden");
+        message.classList.add("show");
+        startHearts();
+      }, 800);
+    });
+
+    // Heart creation
+    function startHearts() {
+      setInterval(createHeart, 300);
+    }
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.innerHTML = "❤️";
+      heart.className = "heart";
+      
+      const size = Math.random() * 20 + 10;
+      heart.style.fontSize = size + "px";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.top = "-5vh";
+      
+      // Random sway duration and speed
+      const duration = Math.random() * 3 + 4;
+      heart.style.transition = `transform ${duration}s linear, top ${duration}s linear`;
+      
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.style.transform = `translateX(${(Math.random() - 0.5) * 200}px) rotate(${Math.random() * 360}deg)`;
+        heart.style.top = "110vh";
+      }, 10);
+
+      setTimeout(() => heart.remove(), duration * 1000);
+    }
+
+    // Ambient background dots
+    const canvas = document.getElementById('canvas-ambient');
+    const ctx = canvas.getContext('2d');
+    let dots = [];
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    window.addEventListener('resize', resize);
+    resize();
+
+    class Dot {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2;
+        this.speedY = Math.random() * 0.5;
+      }
+      update() {
+        this.y -= this.speedY;
+        if (this.y < 0) this.y = canvas.height;
+      }
+      draw() {
+        ctx.fillStyle = 'rgba(255, 143, 171, 0.3)';
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    for (let i = 0; i < 50; i++) dots.push(new Dot());
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      dots.forEach(dot => {
+        dot.update();
+        dot.draw();
+      });
+      requestAnimationFrame(animate);
+    }
+    animate();
+  </script>
 </body>
 </html>
