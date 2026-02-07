@@ -5,9 +5,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const replayBtn = document.getElementById("replayBtn");
 
   const valentineMessages = [
-    "Happy Rose Day!"
+    "To my dearest,",
+    "Each petal of this rose",
+    "Whispers of my affection for you.",
+    "Happy Rose Day, my love!"
   ];
-
   let messageIndex = 0;
 
   roseContainer.addEventListener("click", () => {
@@ -16,9 +18,9 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
       roseContainer.classList.add("hidden"); // remove rose
       messageBox.classList.remove("hidden");
-      showMessage();
+      typeText("Happy Rose Day");
       startPetals();
-    }, 1200);
+    }, 1600);
   });
 
   replayBtn.addEventListener("click", () => {
@@ -60,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (messageIndex < valentineMessages.length) {
       typeText(valentineMessages[messageIndex], () => {
         messageIndex++;
-        setTimeout(displayMessagesSequentially, 1500); // Wait 1.5 seconds before typing next message
+        setTimeout(displayMessagesSequentially, 2000); // Wait 2 seconds before typing next message
       });
     } else {
       // All messages displayed, start heart animation
