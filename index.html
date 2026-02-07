@@ -10,13 +10,21 @@
 
   <main class="stage">
 
-    <!-- HERO ROSE : REAL PHOTO, EMBEDDED (NO CDN, NO DOWNLOAD) -->
+    <!-- HERO ROSE -->
     <div id="roseContainer" class="rose-container">
+
+      <!-- REAL ROSE IMAGE (STABLE SOURCE) -->
       <img
         id="rose"
         alt="Red Rose"
-        src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxAQEhUQEhIVFRUVFRUVFRUVFRUVFRUWFxUVFRUYHSggGBolGxUVITEhJSkrLi4uFx8zODMsNygtLisBCgoKDg0OFxAQFy0dHR0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIAKgBLAMBIgACEQEDEQH/xAAbAAEAAgMBAQAAAAAAAAAAAAAABQYBBAcDAv/EADsQAAIBAwIEAwYEBQQDAQAAAAECEQADBBIhMQVBUWEGEyJxgZGhFCNCUrHB8AcVI0Ni8RQzQ1OS/8QAGQEAAwEBAQAAAAAAAAAAAAAAAAECAwQF/8QAJREAAgICAgICAgMAAAAAAAAAAAECEQMhEjEEEyJBUWEUMnGB/9oADAMBAAIRAxEAPwD9xREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREH//2Q=="
+        loading="eager"
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Rose_flower.jpg/512px-Rose_flower.jpg"
+        onerror="this.style.display='none';document.getElementById('fallback').style.display='block';"
       />
+
+      <!-- FALLBACK (never broken UI) -->
+      <div id="fallback" style="display:none;font-size:64px;">🌹</div>
+
       <span>Tap the rose</span>
     </div>
 
@@ -28,7 +36,6 @@
 
   </main>
 
-  <!-- Atmospheric petals -->
   <div id="petals"></div>
 
   <script src="script.js"></script>
