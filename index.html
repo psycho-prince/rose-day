@@ -2,19 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Happy Rose Day</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <div class="container">
+  <section class="scene">
     <div id="letter" class="letter">
-      💌
-      <p>Open Me</p>
+      <div class="envelope"></div>
+      <p>Tap to open</p>
     </div>
 
-    <h1 id="message" class="hidden">Happy Rose Day</h1>
-  </div>
+    <div id="reveal" class="reveal hidden">
+      <h1 id="text"></h1>
+    </div>
+  </section>
 
   <script src="script.js"></script>
 </body>
