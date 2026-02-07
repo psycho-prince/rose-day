@@ -2,22 +2,44 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Happy Rose Day</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
-  <section class="scene">
-    <div id="letter" class="letter">
-      <div class="envelope"></div>
-      <p>Tap to open</p>
+  <main class="stage">
+
+    <!-- HERO ROSE -->
+    <div id="rose" class="rose">
+      <!-- Premium SVG Rose -->
+      <svg viewBox="0 0 200 300">
+        <!-- Stem -->
+        <rect x="96" y="120" width="8" height="160" fill="#1b5e20"/>
+
+        <!-- Leaves -->
+        <path d="M70 180 C40 160,40 220,80 210" fill="#2e7d32"/>
+        <path d="M130 190 C160 170,160 230,120 220" fill="#2e7d32"/>
+
+        <!-- Petals -->
+        <circle cx="100" cy="80" r="38" fill="#b11226"/>
+        <circle cx="85" cy="75" r="28" fill="#d90429"/>
+        <circle cx="115" cy="75" r="28" fill="#d90429"/>
+        <circle cx="100" cy="60" r="22" fill="#ff4d6d"/>
+      </svg>
+      <span>Tap the rose</span>
     </div>
 
-    <div id="reveal" class="reveal hidden">
-      <h1 id="text"></h1>
-    </div>
-  </section>
+    <!-- LETTER -->
+    <section id="letter" class="letter hidden">
+      <h1 id="message"></h1>
+      <button id="replay">Replay</button>
+    </section>
+
+  </main>
+
+  <!-- Atmospheric layer -->
+  <div id="hearts"></div>
 
   <script src="script.js"></script>
 </body>
