@@ -3,14 +3,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const messageBox = document.getElementById("messageBox");
   const message = document.getElementById("message");
   const replayBtn = document.getElementById("replayBtn");
+  const finalSurprise = document.getElementById("finalSurprise");
 
   const valentineMessages = [
     "To my dearest,",
     "Each petal of this rose",
     "Whispers of my affection for you.",
-    "Happy Rose Day, my love!"
-  ];
-  let messageIndex = 0;
+    "Happy Rose Day, my love!",
+    "Press Replay for a little surprise!"
+  ];  let messageIndex = 0;
 
   roseContainer.addEventListener("click", () => {
     roseContainer.classList.add("open");
@@ -75,6 +76,15 @@ document.addEventListener("DOMContentLoaded", () => {
     for (let i = 0; i < 15; i++) {
       setTimeout(createHeart, i * 300); // Stagger heart creation
     }
+    setTimeout(startFinalSurprise, 15 * 300 + 1000); // After all hearts + 1s delay
+  }
+
+  function startFinalSurprise() {
+    finalSurprise.classList.remove("hidden");
+    // Trigger CSS transition
+    setTimeout(() => {
+      finalSurprise.classList.add("show");
+    }, 50);
   }
 
   function createHeart() {
