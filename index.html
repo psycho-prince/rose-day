@@ -10,19 +10,18 @@
 
   <main class="stage">
 
-    <!-- HERO ROSE -->
+    <!-- HERO ROSE : REAL ROSE PHOTO -->
     <div id="roseContainer" class="rose-container">
 
-      <!-- REAL ROSE IMAGE (STABLE SOURCE) -->
       <img
         id="rose"
-        alt="Red Rose"
+        alt="Red Rose Flower"
         loading="eager"
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Rose_flower.jpg/512px-Rose_flower.jpg"
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Rosa_rubiginosa_1.jpg/512px-Rosa_rubiginosa_1.jpg"
         onerror="this.style.display='none';document.getElementById('fallback').style.display='block';"
       />
 
-      <!-- FALLBACK (never broken UI) -->
+      <!-- Fallback (only if image fails) -->
       <div id="fallback" style="display:none;font-size:64px;">🌹</div>
 
       <span>Tap the rose</span>
@@ -36,6 +35,7 @@
 
   </main>
 
+  <!-- Petals -->
   <div id="petals"></div>
 
   <script src="script.js"></script>
